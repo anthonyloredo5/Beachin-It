@@ -11,6 +11,10 @@ nav .brand-logo {
   color: #444;
 }
 
+#beach {
+  text-shadow: 1px 1px 1px rgb(77, 72, 72);
+}
+
 p {
   line-height: 2rem;
 }
