@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Beachin' It</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
+
 <body>
   <!--navbar section-->
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container"  href="#" class="brand-logo blue-text text-lighten-4">by JEBA</a>
-     
+      <a id="logo-container" href="#" class="brand-logo blue-text text-lighten-4">by JEBA</a>
+
 
       <ul id="nav-mobile" class="sidenav">
         <!--not sure what to do with this navbar link-->
@@ -26,63 +28,98 @@
   </nav>
 
   <div id="index-banner" class="parallax-container">
+
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-        <h1 id= "beach" class="header center purple-text text-lighten-3 ">Beachin' It</h1>
+        <h1 id="beach" class="header center purple-text text-lighten-3 ">Beachin' It</h1>
         <div class="row center">
           <h5 class="header col s12 light">Find a beach near you!</h5>
         </div>
         <div class="row center">
-        <br><br>
+          <br><br>
+        </div>
       </div>
-    </div>
-    <!--Search card -->
-    <div class = "card-large">
-      <div class = "row">
-        <div class = "input-field col s6" style="color: white">
-          <!-- location input -->
-          <input placeholder = "Location" id ="location" type = "text" class="validate" style="color: white">
+      <!--Search card -->
+      <div class="card-large">
+        <div class="row">
+          <div class="input-field col s6" style="color: white">
+            <!-- location input -->
+            <input placeholder="Location" id="location" type="text" class="validate" style="color: white">
 
-          <p>
-            <label style="color: white">
-              <input type="checkbox" class="filled-in box1" />
-              <span>Pet Friendly</span>
-            </label>
-            <label>
-              <input type="checkbox" class="filled-in box2" />
-              <span>Highest Rated</span>
-            </label>
-            <label>
-              <input type="checkbox" class="filled-in box3"  />
-              <span>Nearby Activites</span>
-            </label>
-            <label>
-              <input type="checkbox" class="filled-in box4"  />
-              <span>Nearby Restaurants</span>
-            </label>
-          </p>
-          <button id="sButton" class="btn waves-effect waves-light " type="submit" name="action">Submit
-            <i class="material-icons right">send</i>
-          </button>
-          
-  
+            <p>
+              <label style="color: white">
+                <input type="checkbox" class="filled-in box1" />
+                <span>Pet Friendly</span>
+              </label>
+              <label>
+                <input type="checkbox" class="filled-in box2" />
+                <span>Highest Rated</span>
+              </label>
+              <label>
+                <input type="checkbox" class="filled-in box3" />
+                <span>Nearby Activites</span>
+              </label>
+              <label>
+                <input type="checkbox" class="filled-in box4" />
+                <span>Nearby Restaurants</span>
+              </label>
+            </p>
+            <button id="sButton" class="btn waves-effect waves-light " type="submit" name="action">Submit
+              <i class="material-icons right">send</i>
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="parallax"><img src="background.jpg" alt="Unsplashed background img 1"></div>
+    </div>
+  </div>
+
+  <!-- //potential second div (weather info) -->
+  <div class="parallax-container">
+    <div class="section">
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Weather/Radar</h5>
+            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate
+              our custom components. Additionally, we refined animations and transitions to provide a smoother
+              experience for developers.</p>
+          </div>
+        </div>
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Must See</h5>
+            <p class="light">By utilizing elements and principles of Material Design, we were able to create a
+              framework that incorporates components and animations that provide more feedback to users. Additionally,
+              a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+          </div>
+        </div>
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+            <h5 class="center">Map</h5>
+            <p class="light">We have provided detailed documentation as well as specific code examples to help new
+              users get started. We are also always open to feedback and can answer any questions a user may have
+              about Materialize.</p>
+          </div>
         </div>
       </div>
     </div>
-      
+  </div>
 
+<!-- //potential third div (checkbox data) -->
 
-
-
-  <div class="parallax"><img src="background.jpg" alt="Unsplashed background img 1"></div>
-</div>
-</div>
-    
-<footer>
+  <!-- footer -->
+  <footer>
     <div class="footer-copyright">
       <div class="container">
-      Made by <a class="blue-text text-lighten-3" href="http://materializecss.com">JEBA</a>
+        Made by <a class="blue-text text-lighten-3" href="http://materializecss.com">JEBA</a>
       </div>
     </div>
   </footer>
@@ -90,16 +127,17 @@
 
   <!--  Scripts-->
 
-  
+
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
 
   <script src="js/materialize.js"></script>
-    <script src="js/init.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="logic.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="logic.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-  </body>
+</body>
+
 </html>
