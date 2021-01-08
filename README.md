@@ -11,11 +11,8 @@ This application is designed to simplify finding a relaxing beach anywhere in fl
 
 # API's
 
-- World Tides Api (tide information)
-    (SRC: https://www.worldtides.info/api/v2?heights&plot&date=2021-01-07&lat=33.768321&lon=-118.195617&key=)
-
-- Yelp API (location)
-    (SRC: https://api.yelp.com/v3/businesses/search)
+-rapidApi tide (Tide Info)
+https://tides.p.rapidapi.com/tides?latitude=44.414&longitude=-2.097&interval=60&duration=1440
 
 - Open Weather API (location/forecast)
     (SRC: https://api.openweathermap.org/data/2.5/onecall?lat=)
