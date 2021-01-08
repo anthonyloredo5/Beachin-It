@@ -40,8 +40,33 @@
     <!--Search card -->
     <div class = "card-large">
       <div class = "row">
-        <div class = "input-field col s6">
-          <input placeholder = "Location" id ="location" type = "text" class = "validate">
+        <div class = "input-field col s6" style="color: white">
+          <!-- location input -->
+          <input placeholder = "Location" id ="location" type = "text" class="validate" style="color: white">
+
+          <p>
+            <label style="color: white">
+              <input type="checkbox" class="filled-in box1" />
+              <span>Pet Friendly</span>
+            </label>
+            <label>
+              <input type="checkbox" class="filled-in box2" />
+              <span>Highest Rated</span>
+            </label>
+            <label>
+              <input type="checkbox" class="filled-in box3"  />
+              <span>Nearby Activites</span>
+            </label>
+            <label>
+              <input type="checkbox" class="filled-in box4"  />
+              <span>Nearby Restaurants</span>
+            </label>
+          </p>
+          <button id="sButton" class="btn waves-effect waves-light " type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+          </button>
+          
+  
         </div>
       </div>
     </div>
@@ -75,8 +100,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="logic.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-
-
 
   </body>
 </html>

@@ -1,7 +1,42 @@
 $(document).ready(function () {
+    //make a static img tag
+    //selector.attr("src", )
+    var pFriendly=false;
+    var hRated=false;
+    var nActivities=false;
+    var nRestaurant=false;
+
     weatherAPICall();
     gMapsAPI();
     tidesAPI();
+    //store seacrh value
+    $("#sButton").on("click", function () {
+        var searchValue = $("#location").val();
+        console.log(searchValue, "search Value");
+
+
+        //checks which boxes are slected and whether to include that dat in result.
+        if ($(".box1").is(
+            ":checked")) {
+                pFriendly = true;
+            console.log(pFriendly);
+        }
+        if ($(".box2").is(
+            ":checked")) {
+                hRated = true;
+            console.log(hRated);
+        }
+        if ($(".box3").is(
+            ":checked")) {
+                nActivities = true;
+            console.log(nActivities);
+        }
+        if ($(".box4").is(
+            ":checked")) {
+                nRestaurant = true;
+            console.log(nRestaurant);
+        }
+    })
 
     //working
     function weatherAPICall() {
@@ -13,12 +48,15 @@ $(document).ready(function () {
             dataType: "json",
             success: function (response) {
                 console.log(response, "weather api");
-                foreCastAPI(response.coord.lat,response.coord.lon);
+                foreCastAPI(response.coord.lat, response.coord.lon);
+
+
+
             }
         })
     }
     //Working
-    function foreCastAPI(lat, lon){
+    function foreCastAPI(lat, lon) {
         var apiKey = "58ceaad44652a8be4772292ae8aa41bc";
         var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=alerts&appid=" + apiKey;
         $.ajax({
@@ -31,12 +69,12 @@ $(document).ready(function () {
         })
     }
     //google maps api
-    function gMapsAPI(){
+    function gMapsAPI() {
         let queryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=burgers%20NewSmyrnaBeach&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
-        $.ajax({  
+        $.ajax({
             url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(queryURL),
             method: 'GET',
-        }).then(function(response){
+        }).then(function (response) {
             console.log(response, ":WORKING");
             console.log(JSON.parse(response.contents), "reference");
             var data = JSON.parse(response.contents);
@@ -44,7 +82,7 @@ $(document).ready(function () {
         });
     }
     //working
-    function tidesAPI(){
+    function tidesAPI() {
         const settings = {
             "async": true,
             "crossDomain": true,
@@ -55,7 +93,7 @@ $(document).ready(function () {
                 "x-rapidapi-host": "tides.p.rapidapi.com"
             }
         };
-        
+
         $.ajax(settings).done(function (response) {
             console.log(response, "TIDES");
         });
