@@ -1,20 +1,8 @@
 $(document).ready(function () {
-    //googlePlaces();
     weatherAPICall();
     gMapsAPI();
-    //tidesAPI();
-    function googlePlaces() {
-        var placesAPIKey = "AIzaSyAYn8qXNqQRfZTxiAqDSsg_V7cjybZ4eXY";
-        var placesAPI = "https://cors-proxy.htmldriven.com/?url=https://www.google.com/maps/embed/v1/MODE?key="+ placesAPIKey +"&parameters";
-        $.ajax({
-            type: "GET",
-            url: placesAPI,
-            dataType: "json",
-            success: function (response) {
-                console.log(response);
-            }
-        })
-    }
+    tidesAPI();
+
     //working
     function weatherAPICall() {
         var apiKey = "58ceaad44652a8be4772292ae8aa41bc";
@@ -57,27 +45,31 @@ $(document).ready(function () {
     }
     //working
     function tidesAPI(){
-        tideAPIKey = "dd23eb25-240d-4165-bc96-550bf270ff79";
-        tideAPI = "https://www.worldtides.info/api/v2?heights&plot&date=2021-01-07&lat=33.768321&lon=-118.195617&key=" + tideAPIKey;
-        $.ajax({
-            type: "GET",
-            url: tideAPI,
-            dataType: "json",
-            success: function (response) {
-                console.log(response, "tides");
+        const settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://tides.p.rapidapi.com/tides?latitude=44.414&longitude=-2.097&interval=60&duration=1440",
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": "060fa7bd32mshd4d14b256c582fbp173924jsn92ccfae51f8e",
+                "x-rapidapi-host": "tides.p.rapidapi.com"
             }
-        })
+        };
+        
+        $.ajax(settings).done(function (response) {
+            console.log(response, "TIDES");
+        });
     }
-    var yBusinessSearchAPI = "https://api.yelp.com/v3/businesses/search";
-    $(".button").on("click", function () {
-        $.ajax({
-            type: "GET",
-            url: yBusinessSearchAPI,
-            dataType: "json",
-            success: function (response) {
-                console.log(response);
-            }
-        })
-    })
+    // var yBusinessSearchAPI = "https://api.yelp.com/v3/businesses/search";
+    // $(".button").on("click", function () {
+    //     $.ajax({
+    //         type: "GET",
+    //         url: yBusinessSearchAPI,
+    //         dataType: "json",
+    //         success: function (response) {
+    //             console.log(response);
+    //         }
+    //     })
+    // })
 });
 
