@@ -7,6 +7,12 @@ nav .brand-logo {
   text-shadow: 1px 1px 1px rgb(77, 72, 72);
 }
 
+#location {
+  font-weight: bold;
+  color: white;
+}
+
+
 p {
   line-height: 2rem;
 }
