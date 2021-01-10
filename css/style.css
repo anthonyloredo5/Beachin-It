@@ -24,6 +24,11 @@ nav .brand-logo {
   color: white;
 }
 
+#map{
+  width: 100%;
+  height: 200px;
+}
+
 p {
   line-height: 2rem;
   color: #444;
@@ -68,3 +73,17 @@ background-color:white
   color:rgb(184, 78, 166);
 }
 
+.mapContainer{
+  width:25%;
+  position: relative;
+}
+
+#tide-data0{
+  text-align: center;
+}
+#tide-data1{
+  text-align: left;
+}
+#tide-data2{
+  text-align: right;
+}

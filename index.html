@@ -7,7 +7,9 @@
   <title>Beachin' It</title>
 
   <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
@@ -51,28 +53,28 @@
 
             <div>
 
-            <p>
-              <label style="color: white">
-                <input type="checkbox" class="filled-in box1" />
-                <span>Pet Friendly</span>
-              </label>
+              <p>
+                <label style="color: white">
+                  <input type="checkbox" class="filled-in box1" />
+                  <span>Pet Friendly</span>
+                </label>
 
-              <label style="color:white">
-                <input  type="checkbox" class="filled-in box2" />
-                <span>Highest Rated</span>
-              </label>
-              <label style="color:white">
+                <label style="color:white">
+                  <input type="checkbox" class="filled-in box2" />
+                  <span>Highest Rated</span>
+                </label>
+                <label style="color:white">
 
-                <input type="checkbox" class="filled-in box3" />
-                <span>Nearby Activites</span>
-              </label>
+                  <input type="checkbox" class="filled-in box3" />
+                  <span>Nearby Activites</span>
+                </label>
 
-              <label style="color:white">
-                <input  type="checkbox" class="filled-in box4" />
-                <span>Nearby Restaurants</span>
+                <label style="color:white">
+                  <input type="checkbox" class="filled-in box4" />
+                  <span>Nearby Restaurants</span>
 
-              </label>
-            </p>
+                </label>
+              </p>
             </div>
             <button id="sButton" class="btn waves-effect waves-light " type="submit" name="action">Submit
               <i class="material-icons right white-text">send</i>
@@ -82,7 +84,7 @@
         </div>
       </div>
 
-      <div class="parallax"><img src="./assets/background.jpg"  alt="Unsplashed background img 1"></div>
+      <div class="parallax"><img src="./assets/background.jpg" alt="Unsplashed background img 1"></div>
     </div>
   </div>
 
@@ -98,6 +100,9 @@
             <h2 class="center pink-text"><i class="material-icons">pool</i></h2>
 
             <p class="light2">TIDES</p>
+            <div id="tide-data"></div>
+            <div id="tide-data0"></div>
+            <div id="tide-data1"></div>
 
 
           </div>
@@ -109,15 +114,17 @@
             <h2 class="center pink-text"><i class="material-icons">flash_on</i></h2>
 
             <p class="light2">WEATHER</p>
-          <div id="current-weather"></div>
+            <div id="current-weather"></div>
 
 
           </div>
         </div>
         <div class="col s12 m4">
-          <div class="icon-block">
+          <div class="icon-block1">
             <h2 class="center pink-text"><i class="material-icons">map</i></h2>
             <p class="light2">MAP</p>
+            <div id="map"
+            </div>
           </div>
         </div>
       </div>
@@ -173,43 +180,45 @@
                 users get started. We are also always open to feedback and can answer any questions a user may have
                 about Materialize.</p>
             </div>
+          </div>
+          <div class="col s12 m3">
+            <div class="icon-block">
+              <h2 class="center brown-text"><i class="material-icons">local_dining</i></h2>
+              <h5 class="center">Nearby Restaurants API Info</h5>
+              <p class="light">We have provided detailed documentation as well as specific code examples to help new
+                users get started. We are also always open to feedback and can answer any questions a user may have
+                about Materialize.</p>
             </div>
-            <div class="col s12 m3">
-              <div class="icon-block">
-                <h2 class="center brown-text"><i class="material-icons">local_dining</i></h2>
-                <h5 class="center">Nearby Restaurants API Info</h5>
-                <p class="light">We have provided detailed documentation as well as specific code examples to help new
-                  users get started. We are also always open to feedback and can answer any questions a user may have
-                  about Materialize.</p>
-              </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- footer -->
-  <footer>
-    <div class="footer-copyright">
-      <div class="container">
-        Made by <a class="blue-text text-lighten-3" href="http://materializecss.com">JEBA</a>
+    <!-- footer -->
+    <footer>
+      <div class="footer-copyright">
+        <div class="container">
+          Made by <a class="blue-text text-lighten-3" href="http://materializecss.com">JEBA</a>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 
 
-  <!--  Scripts-->
+    <!--  Scripts-->
 
 
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
 
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="logic.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
 
-</body>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="logic.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- maps attempt -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjLvwdYeDXPOjPs7YzTq8ZHLEmHSTdf5s"></script>
+    
 
 </html>
