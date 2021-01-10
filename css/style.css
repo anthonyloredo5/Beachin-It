@@ -26,12 +26,21 @@ nav .brand-logo {
 
 p {
   line-height: 2rem;
+  color: #444;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 1px 1px 1px gray;
 }
 
+
 .light2{
-  color: darkslateblue;
+  color: rgb(85, 85, 88);
+  font-size: medium;
+  font-weight: bold;
   text-align: center;
 }
+
+
 
 .sidenav-trigger {
   color: #26a69a;
