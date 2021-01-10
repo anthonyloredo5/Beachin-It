@@ -8,6 +8,7 @@ $(document).ready(function () {
 
     //store seacrh value
     $("#sButton").on("click", function () {
+        $("#current-weather").html("");
         var searchValue = $("#location").val();
         console.log(searchValue, "search Value");
 
@@ -64,7 +65,6 @@ $(document).ready(function () {
                 var hours = date.getHours();
                 var hours2 = date2.getHours();
                 var minutes = "0" + date.getMinutes();
-                var seconds = "0" + date.getSeconds();
 
                 //changes from 24 hour time
                 hours2 = hours2 - 12;
