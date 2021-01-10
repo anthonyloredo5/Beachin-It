@@ -50,11 +50,36 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response, "weather api");
                 foreCastAPI(response.coord.lat, response.coord.lon);
+
+                //converts to f
+                var t = response.main.temp;
+                var KtoF = t * 9/5 - 459.67;
+                var fKtoF = KtoF.toFixed(1);
+
+                //converting unix time
+                let unix_timestamp_sunrise = response.sys.sunrise;
+                let unix_timestamp_sunset = response.sys.sunset;
+                var date = new Date(unix_timestamp_sunrise * 1000);
+                var date2 = new Date(unix_timestamp_sunset * 1000);
+                var hours = date.getHours();
+                var hours2 = date2.getHours();
+                var minutes = "0" + date.getMinutes();
+                var seconds = "0" + date.getSeconds();
+
+                //changes from 24 hour time
+                hours2 = hours2 - 12;
+
+                var formattedTime = hours +  ":" + minutes.substr(-2) + "am";
+                var formattedTime2 = hours2 +  ":" + minutes.substr(-2) + "pm";
+                
+                
+                
+
             
-            var currentTemperature = $("<p></p>").text("Temperature: " + response.main.temp);
-            var humidity = $("<p></p").text("Humidity: " + response.main.humidity);
-            var sun = $("<p></p>").text("Sunrise: " + response.sys.sunrise + " Sunset: " + response.sys.sunset);
-            var weather = $("<p></p>").text("Weather today: " +  response.weather[0].description);
+            var currentTemperature = $("<p></p>").text("Temperature: " + fKtoF + "F");
+            var humidity = $("<p></p").text("Humidity: " + response.main.humidity + "%");
+            var sun = $("<p></p>").text("Sunrise: " + formattedTime + ", " + "Sunset: " + formattedTime2);
+            var weather = $("<p></p>").text("Current Weather Forecast: " +  response.weather[0].description);
             $("#current-weather").append(currentTemperature,humidity,sun,weather);
             
             
@@ -99,7 +124,7 @@ $(document).ready(function () {
             "url": "https://tides.p.rapidapi.com/tides?latitude=44.414&longitude=-2.097&interval=60&duration=1440",
             "method": "GET",
             "headers": {
-                "x-rapidapi-key": "060fa7bd32mshd4d14b256c582fbp173924jsn92ccfae51f8e",
+                "x-rapidapi-key": "860bd8267cmsh0224dc5b15d78d9p1bf78fjsnf179cb3c0ad2",
                 "x-rapidapi-host": "tides.p.rapidapi.com"
             }
         };
