@@ -34,15 +34,15 @@ p {
   color: #444;
   font-weight: bold;
   text-align: center;
-  text-shadow: 1px 1px 1px gray;
 }
 
 
 .light2{
   color: rgb(85, 85, 88);
-  font-size: medium;
+  font-size: large;
   font-weight: bold;
   text-align: center;
+  text-shadow: 1px 1px 1px rgb(139, 134, 134);
 }
 
 
@@ -69,9 +69,9 @@ footer.page-footer {
 background-color:white
 }
 
-#current-weather {
-  color:rgb(184, 78, 166);
-}
+/* #current-weather{
+
+} */
 
 .mapContainer{
   width:25%;
