@@ -7,7 +7,7 @@
   <title>Beachin' It</title>
 
   <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
@@ -16,7 +16,8 @@
   <!--navbar section-->
   <nav class="bgTop" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo blue-text text-lighten-4">by JEBA</a>
+      <span class="material-icons" style="color: rgb(230, 176, 223); size: 10px;">waves</span>
+      <a id="logoContainer" href="#" class="brand-logo blue-text text-lighten-4">Beachin' It</a>
 
 
       <ul id="nav-mobile" class="sidenav">
@@ -32,7 +33,7 @@
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-        <h1 id="beach" class="header center purple-text text-lighten-3 ">Beachin' It</h1>
+        <h1 id="beach" class="header center purple-text text-lighten-3 ">Where we goin?</h1>
         <div class="row center">
           <h5 class="header col s12 light">Find a beach near you!</h5>
         </div>
@@ -45,35 +46,43 @@
         <div class="row">
           <div class="input-field col s6">
             <!-- location input -->
-            <input placeholder="Location" id="location" type="text" class="validate">
-            
+
+            <input placeholder="Location" id="location" type="text" class="validate" style="color: white;">
+
+            <div>
+
             <p>
               <label style="color: white">
                 <input type="checkbox" class="filled-in box1" />
                 <span><b>Pet Friendly</b></span>
               </label>
-              <label style="color: white">
-                <input type="checkbox" class="filled-in box2" />
-                <span><b>Highest Rated</b></span>
+
+              <label style="color:white">
+                <input  type="checkbox" class="filled-in box2" />
+                <span>Highest Rated</span>
               </label>
-              <label style="color: white">
+              <label style="color:white">
+
                 <input type="checkbox" class="filled-in box3" />
                 <span><b>Nearby Activites</b></span>
               </label>
-              <label style="color: white">
-                <input type="checkbox" class="filled-in box4" />
-                <span><b>Nearby Restaurants</b></span>
+
+              <label style="color:white">
+                <input  type="checkbox" class="filled-in box4" />
+                <span>Nearby Restaurants</span>
+
               </label>
             </p>
+            </div>
             <button id="sButton" class="btn waves-effect waves-light " type="submit" name="action">Submit
-              <i class="material-icons right">send</i>
+              <i class="material-icons right white-text">send</i>
             </button>
 
           </div>
         </div>
       </div>
 
-      <div class="parallax"><img src="background.jpg" alt="Unsplashed background img 1"></div>
+      <div class="parallax"><img src="./assets/background.jpg"  alt="Unsplashed background img 1"></div>
     </div>
   </div>
 
@@ -84,28 +93,25 @@
       <div class="row">
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center dark">Tide Data from API</h5>
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate
-              our custom components. Additionally, we refined animations and transitions to provide a smoother
-              experience for developers.</p>
+
+            <h2 class="center pink-text"><i class="material-icons">flash_on</i></h2>
+            <p class="light2"> weather section blahblahblahblahblahblahblahb</p>
+
           </div>
         </div>
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">Current Weather Data from API</h5>
-            <div id="current-weather"></div>
+
+            <h2 class="center pink-text"><i class="material-icons">pool</i></h2>
+            <p class="light2"> activity section blahblahblahblahblahb </p>
+
           </div>
           
         </div>
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Map</h5>
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new
-              users get started. We are also always open to feedback and can answer any questions a user may have
-              about Materialize.</p>
+            <h2 class="center pink-text"><i class="material-icons">map</i></h2>
+            <p class="light2"> map section blahblahblahblahblahblahblahb </p>
           </div>
         </div>
       </div>
@@ -124,7 +130,7 @@
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="background.jpg" alt="Unsplashed background img 2"></div>
+    <div class="parallax"><img src="./assets/background.jpg" alt="Unsplashed background img 2"></div>
   </div>
 
   <!-- Display data from api based on user selection -->
@@ -133,6 +139,10 @@
       <div class="row">
         <div class="row">
           <h3><i class="mdi-content-send brown-text"></i></h3>
+
+          <h4>RESULTS AREA</h4>
+          <p class="left-align light">I think we wanted to have this section display all their results? Or we could also fill this section with something else like restaurant results or pictures from the beach they looked up? Like one of those scroll through image sections. - i forgot what they are called.-</p>
+
           <!-- add sections for api data -->
           <div class="col s12 m3">
             <div class="icon-block">

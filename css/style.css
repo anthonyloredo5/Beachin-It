@@ -2,9 +2,20 @@ nav ul a,
 nav .brand-logo {
   color: #444;
 }
+#logoContainer{
+  text-shadow: 1px 1px 1px rgb(136, 124, 124);
+}
 
+.material-icons{
+  color: rgb(236, 157, 203);
+}
 #beach {
   text-shadow: 1px 1px 1px rgb(77, 72, 72);
+}
+
+
+#sButton{
+  background-color: rgb(146, 226, 228);
 }
 
 #location {
@@ -12,9 +23,13 @@ nav .brand-logo {
   color: white;
 }
 
-
 p {
   line-height: 2rem;
+}
+
+.light2{
+  color: darkslateblue;
+  text-align: center;
 }
 
 .sidenav-trigger {
@@ -36,9 +51,10 @@ footer.page-footer {
 }
 
 .bgTop{
-background-color: darkslateblue;
+background-color:white
 }
 
 #current-weather {
   color:rgb(184, 78, 166);
 }
+
