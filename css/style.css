@@ -2,13 +2,27 @@ nav ul a,
 nav .brand-logo {
   color: #444;
 }
+#logoContainer{
+  text-shadow: 1px 1px 1px rgb(136, 124, 124);
+}
 
+.material-icons{
+  color: rgb(236, 157, 203);
+}
 #beach {
   text-shadow: 1px 1px 1px rgb(77, 72, 72);
 }
 
+#sButton{
+  background-color: rgb(146, 226, 228);
+}
 p {
   line-height: 2rem;
+}
+
+.light2{
+  color: darkslateblue;
+  text-align: center;
 }
 
 .sidenav-trigger {
@@ -28,3 +42,4 @@ p {
 footer.page-footer {
   margin: 0;
 }
+
