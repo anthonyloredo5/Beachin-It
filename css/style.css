@@ -8,6 +8,7 @@ nav .brand-logo {
 
 .material-icons{
   color: rgb(236, 157, 203);
+  text-shadow: 1px 1px 1px slategrey;
 }
 #beach {
   text-shadow: 1px 1px 1px rgb(77, 72, 72);
