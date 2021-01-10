@@ -39,3 +39,6 @@ footer.page-footer {
 background-color: darkslateblue;
 }
 
+#current-weather {
+  color:rgb(184, 78, 166);
+}
