@@ -24,14 +24,28 @@ nav .brand-logo {
   color: white;
 }
 
-p {
-  line-height: 2rem;
+#map{
+  width: 100%;
+  height: 200px;
 }
 
-.light2{
-  color: darkslateblue;
+p {
+  line-height: 2rem;
+  color: #444;
+  font-weight: bold;
   text-align: center;
 }
+
+
+.light2{
+  color: rgb(85, 85, 88);
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgb(139, 134, 134);
+}
+
+
 
 .sidenav-trigger {
   color: #26a69a;
@@ -55,7 +69,21 @@ footer.page-footer {
 background-color:white
 }
 
-#current-weather {
-  color:rgb(184, 78, 166);
+/* #current-weather{
+
+} */
+
+.mapContainer{
+  width:25%;
+  position: relative;
 }
 
+#tide-data0{
+  text-align: center;
+}
+#tide-data1{
+  text-align: left;
+}
+#tide-data2{
+  text-align: right;
+}
