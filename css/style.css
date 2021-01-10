@@ -13,9 +13,16 @@ nav .brand-logo {
   text-shadow: 1px 1px 1px rgb(77, 72, 72);
 }
 
+
 #sButton{
   background-color: rgb(146, 226, 228);
 }
+
+#location {
+  font-weight: bold;
+  color: white;
+}
+
 p {
   line-height: 2rem;
 }
@@ -45,5 +52,9 @@ footer.page-footer {
 
 .bgTop{
 background-color:white
+}
+
+#current-weather {
+  color:rgb(184, 78, 166);
 }
 

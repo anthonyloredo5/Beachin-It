@@ -6,14 +6,15 @@ $(document).ready(function () {
     var nActivities=false;
     var nRestaurant=false;
 
-    weatherAPICall();
-    gMapsAPI();
-    tidesAPI();
     //store seacrh value
     $("#sButton").on("click", function () {
         var searchValue = $("#location").val();
         console.log(searchValue, "search Value");
 
+        //calls for API 
+        weatherAPICall(searchValue);
+        gMapsAPI();
+        tidesAPI();
 
         //checks which boxes are slected and whether to include that dat in result.
         if ($(".box1").is(
@@ -39,9 +40,9 @@ $(document).ready(function () {
     })
 
     //working
-    function weatherAPICall() {
+    function weatherAPICall(searchValue) {
         var apiKey = "58ceaad44652a8be4772292ae8aa41bc";
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=london&appid=" + apiKey;
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=" + apiKey;
         $.ajax({
             type: "GET",
             url: queryURL,
@@ -49,6 +50,15 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response, "weather api");
                 foreCastAPI(response.coord.lat, response.coord.lon);
+            
+            var currentTemperature = $("<p></p>").text("Temperature: " + response.main.temp);
+            var humidity = $("<p></p").text("Humidity: " + response.main.humidity);
+            var sun = $("<p></p>").text("Sunrise: " + response.sys.sunrise + " Sunset: " + response.sys.sunset);
+            var weather = $("<p></p>").text("Weather today: " +  response.weather[0].description);
+            $("#current-weather").append(currentTemperature,humidity,sun,weather);
+            
+            
+            
 
 
 
@@ -109,5 +119,6 @@ $(document).ready(function () {
     //         }
     //     })
     // })
+
 });
 
