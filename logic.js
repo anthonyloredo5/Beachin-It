@@ -12,6 +12,7 @@ $(document).ready(function () {
     //store seacrh value
     $("#sButton").on("click", function () {
         $("#current-weather").html("");
+        $("#beachResults").html("");
         var searchValue = $("#location").val();
         console.log(searchValue, "search Value");
 
