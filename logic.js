@@ -13,6 +13,9 @@ $(document).ready(function () {
     $("#sButton").on("click", function () {
         $("#current-weather").html("");
         $("#beachResults").html("");
+        $("#hotelResults").html("");
+        $("#restaurantResults").html("");
+        $("#activityResults").html("");
 
         var searchValue = $("#location").val();
         console.log(searchValue, "search Value");
