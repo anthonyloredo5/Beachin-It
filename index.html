@@ -57,22 +57,22 @@
               <p>
                 <label style="color: white">
                   <input type="checkbox" class="filled-in box1" />
-                  <span>Pet Friendly</span>
+                  <span>Highest Rated Hotel</span>
                 </label>
 
                 <label style="color:white">
                   <input type="checkbox" class="filled-in box2" />
-                  <span>Highest Rated</span>
+                  <span>Highest Rated Beach</span>
                 </label>
                 <label style="color:white">
 
                   <input type="checkbox" class="filled-in box3" />
-                  <span>Nearby Activites</span>
+                  <span>Highest Rated Activites</span>
                 </label>
 
                 <label style="color:white">
                   <input type="checkbox" class="filled-in box4" />
-                  <span>Nearby Restaurants</span>
+                  <span>Highest Rated Restaurants</span>
 
                 </label>
               </p>
@@ -153,12 +153,11 @@
             <!-- add sections for api data -->
             <div class="col s12 m3">
               <div class="icon-block">
-                <h2 class="center brown-text"><i class="material-icons">pets</i></h2>
-                <h5 class="center">Pet Friendly API Info</h5>
-                <span class="light">We did most of the heavy lifting for you to provide a default stylings that
-                  incorporate
-                  our custom components. Additionally, we refined animations and transitions to provide a smoother
-                  experience for developers.</span>
+                <h2 class="center brown-text"><i class="material-icons">hotel</i></h2>
+                <h5 class="center">Hotels</h5>
+
+                <div id="hotelResults"></div>
+
               </div>
             </div>
             <div class="col s12 m3">
@@ -172,30 +171,19 @@
             <div class="col s12 m3">
               <div class="icon-block">
                 <h2 class="center brown-text"><i class="material-icons">local_activity</i></h2>
-                <h5 class="center">Nearby Activities API Info</h5>
-                <span class="light">We have provided detailed documentation as well as specific code examples to help
-                  new
-                  users get started. We are also always open to feedback and can answer any questions a user may have
-                  about Materialize.</span>
+                <h5 class="center">Nearby Activities</h5>
+
+               <div id="activityResults"></div>
+
               </div>
             </div>
             <div class="col s12 m3">
               <div class="icon-block">
                 <h2 class="center brown-text"><i class="material-icons">local_dining</i></h2>
-                <h5 class="center">Nearby Restaurants API Info</h5>
-                <p class="light">We have provided detailed documentation as well as specific code examples to help new
-                  users get started. We are also always open to feedback and can answer any questions a user may have
-                  about Materialize.</p>
-              </div>
-              <div class="col s12 m3">
-                <div class="icon-block">
-                  <h2 class="center brown-text"><i class="material-icons">local_dining</i></h2>
-                  <h5 class="center">Nearby Restaurants API Info</h5>
-                  <span class="light">We have provided detailed documentation as well as specific code examples to help
-                    new
-                    users get started. We are also always open to feedback and can answer any questions a user may have
-                    about Materialize.</span>
-                </div>
+                <h5 class="center">Nearby Restaurants</h5>
+
+              <div id="restaurantResults"></div>
+
               </div>
             </div>
           </div>

@@ -1,10 +1,12 @@
 $(document).ready(function () {
     //make a static img tag
     //selector.attr("src", )
-    var pFriendly = false;
-    var hRated = false;
-    var nActivities = false;
-    var nRestaurant = false;
+    var hotelBox = false;
+    var beachBox = false;
+    var activityBox = false;
+    var restaurantBox = false;
+
+
 
 
 
@@ -13,36 +15,41 @@ $(document).ready(function () {
     $("#sButton").on("click", function () {
         $("#current-weather").html("");
         $("#beachResults").html("");
+        $("#hotelResults").html("");
+        $("#restaurantResults").html("");
+        $("#activityResults").html("");
 
         var searchValue = $("#location").val();
         console.log(searchValue, "search Value");
+
+        //checks which boxes are slected and whether to include that dat in result.
+        if ($(".box1").is(
+            ":checked")) {
+            hotelBox = true;
+            console.log(hotelBox);
+        }
+        if ($(".box2").is(
+            ":checked")) {
+            beachBox = true;
+            console.log(beachBox);
+        }
+        if ($(".box3").is(
+            ":checked")) {
+            activityBox = true;
+            console.log(activityBox);
+        }
+        if ($(".box4").is(
+            ":checked")) {
+            restaurantBox = true;
+            console.log(restaurantBox);
+        }
 
         //calls for API 
         weatherAPICall(searchValue);
         gMapsAPI(searchValue);
         tidesAPI();
 
-        //checks which boxes are slected and whether to include that dat in result.
-        if ($(".box1").is(
-            ":checked")) {
-            pFriendly = true;
-            console.log(pFriendly);
-        }
-        if ($(".box2").is(
-            ":checked")) {
-            hRated = true;
-            console.log(hRated);
-        }
-        if ($(".box3").is(
-            ":checked")) {
-            nActivities = true;
-            console.log(nActivities);
-        }
-        if ($(".box4").is(
-            ":checked")) {
-            nRestaurant = true;
-            console.log(nRestaurant);
-        }
+
     })
 
     //Beaches data appended here
@@ -130,161 +137,13 @@ $(document).ready(function () {
                     console.log("Callback Running");
                     if (status == google.maps.places.PlacesServiceStatus.OK) {
                         for (var i = 0; i < results.length; i++) {
-                            createMarker(results[i]);
+                            createMarkers(results[i]);
                         }
                     }
                 }
 
 
 
-                // //Places attempt(best)
-                // var map;
-                // var service;
-                // var infowindow;
-                // initialize();
-                // function initialize() {
-                //     var pyrmont = new google.maps.LatLng(response.coord.lat, response.coord.lon);
-
-                //     map = new google.maps.Map(document.getElementById('map'), {
-                //         center: pyrmont,
-                //         zoom: 15
-                //     });
-                //     //mayvbe
-                //     // let getNextPage;
-                //     // const moreButton = document.getElementById("more");
-
-                //     // moreButton.onclick = function () {
-                //     //     moreButton.disabled = true;
-
-                //     //     if (getNextPage) {
-                //     //         getNextPage();
-                //     //     }
-                //     // };
-
-                //     var request = {
-                //         location: pyrmont,
-                //         radius: '500',
-                //         query: ['beach',
-                //             'activites',
-                //             'beach']
-                //     };
-
-                //     service = new google.maps.places.PlacesService(map);
-                //     service.nearbySearch(request, callback);
-
-                //     service.nearbySearch(
-                //         { location: pyrmont, radius: 500, type: "store" },
-                //         (results, status, pagination) => {
-                //             if (status !== "OK") return;
-                //             createMarkers(results, map);
-                //             moreButton.disabled = !pagination.hasNextPage;
-
-                //             if (pagination.hasNextPage) {
-                //                 getNextPage = pagination.nextPage;
-                //             }
-                //         }
-                //     );
-
-                // }
-
-                // function callback(results, status) {
-                //     if (status == google.maps.places.PlacesServiceStatus.OK) {
-                //         for (var i = 0; i < results.length; i++) {
-                //             var place = results[i];
-                //             createMarker(results[i]);
-                //         }
-                //     }
-                // }
-                // function createMarkers(places, map) {
-                //     const bounds = new google.maps.LatLngBounds();
-                //     const placesList = document.getElementById("places");
-
-                //     for (let i = 0, place; (place = places[i]); i++) {
-                //         const image = {
-                //             url: place.icon,
-                //             size: new google.maps.Size(71, 71),
-                //             origin: new google.maps.Point(0, 0),
-                //             anchor: new google.maps.Point(17, 34),
-                //             scaledSize: new google.maps.Size(25, 25),
-                //         };
-                //         new google.maps.Marker({
-                //             map,
-                //             icon: image,
-                //             title: place.name,
-                //             position: place.geometry.location,
-                //         });
-                //         const li = document.createElement("li");
-                //         li.textContent = place.name;
-                //         placesList.appendChild(li);
-                //         bounds.extend(place.geometry.location);
-                //     }
-                //     map.fitBounds(bounds);
-                // }
-
-                //places attempt(current)
-
-                // This example requires the Places library. Include the libraries=places
-                // parameter when you first load the API. For example:
-                // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-                // function initMap() {
-                //     // Create the map.
-                //     const pyrmont = { lat: -33.866, lng: 151.196 };
-                //     const map = new google.maps.Map(document.getElementById("map"), {
-                //         center: pyrmont,
-                //         zoom: 17,
-                //     });
-                //     // Create the places service.
-                //     const service = new google.maps.places.PlacesService(map);
-                //     let getNextPage;
-                //     const moreButton = document.getElementById("more");
-
-                //     moreButton.onclick = function () {
-                //         moreButton.disabled = true;
-
-                //         if (getNextPage) {
-                //             getNextPage();
-                //         }
-                //     };
-                //     // Perform a nearby search.
-                //     service.nearbySearch(
-                //         { location: pyrmont, radius: 500, type: "store" },
-                //         (results, status, pagination) => {
-                //             if (status !== "OK") return;
-                //             createMarkers(results, map);
-                //             moreButton.disabled = !pagination.hasNextPage;
-
-                //             if (pagination.hasNextPage) {
-                //                 getNextPage = pagination.nextPage;
-                //             }
-                //         }
-                //     );
-                // }
-
-                // function createMarkers(places, map) {
-                //     const bounds = new google.maps.LatLngBounds();
-                //     const placesList = document.getElementById("places");
-
-                //     for (let i = 0, place; (place = places[i]); i++) {
-                //         const image = {
-                //             url: place.icon,
-                //             size: new google.maps.Size(71, 71),
-                //             origin: new google.maps.Point(0, 0),
-                //             anchor: new google.maps.Point(17, 34),
-                //             scaledSize: new google.maps.Size(25, 25),
-                //         };
-                //         new google.maps.Marker({
-                //             map,
-                //             icon: image,
-                //             title: place.name,
-                //             position: place.geometry.location,
-                //         });
-                //         const li = document.createElement("li");
-                //         li.textContent = place.name;
-                //         placesList.appendChild(li);
-                //         bounds.extend(place.geometry.location);
-                //     }
-                //     map.fitBounds(bounds);
-                // }
 
             }
         })
@@ -304,24 +163,103 @@ $(document).ready(function () {
     }
     //google maps api
     function gMapsAPI(searchValue) {
-        let queryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchValue + "%20beaches&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
+        let rqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchValue + "%20restaurants&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
+
         $.ajax({
-            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(queryURL), 
+            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(rqueryURL),
             method: 'GET',
         }).then(function (response) {
-            console.log(response, ":WORKING");
+            console.log(response, "R:WORKING");
+            console.log(JSON.parse(response.contents), "reference");
+            var data = JSON.parse(response.contents);
+            console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
+
+            //restaurant data appended here  
+            //if checkbox isn't clicked dont present data
+            console.log(restaurantBox, "aojaoi hegiuasrigbr");
+            if (restaurantBox == true) {
+                var restaurant = $("<p>").text("Your Restaurant Result: ")
+                var restaurantName = $("<p>").text(data.candidates[0].name);
+                var restaurantAddress = $("<p>").text(data.candidates[0].formatted_address);
+                var restaurantRating = $("<p>").text(data.candidates[0].rating + " stars");
+                console.log("Restaurant Rating " + data.candidates[0].rating);
+                $("#restaurantResults").append(restaurant, restaurantName, restaurantRating, restaurantAddress,);
+            }
+
+        });
+
+
+        let hqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchValue + "%20hotels&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
+
+        $.ajax({
+            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(hqueryURL),
+            method: 'GET',
+        }).then(function (response) {
+            console.log(response, "H:WORKING");
+            console.log(JSON.parse(response.contents), "reference");
+            var data = JSON.parse(response.contents);
+            console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
+
+            //Hotel data appended here  
+            //if checkbox isn't clicked dont present data
+            console.log(hotelBox, "aojaoi hegiuasrigbr");
+            if (hotelBox == true) {
+                var hotel = $("<p>").text("Your Hotel Result: ")
+                var hotelName = $("<p>").text(data.candidates[0].name);
+                var hotelAddress = $("<p>").text(data.candidates[0].formatted_address);
+                var hotelRating = $("<p>").text(data.candidates[0].rating + " stars");
+                console.log("Hotel Rating " + data.candidates[0].rating);
+                $("#hotelResults").append(hotel, hotelName, hotelRating, hotelAddress,);
+            }
+
+        });
+
+        let aqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchValue + "%20attractions&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
+
+        $.ajax({
+            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(aqueryURL),
+            method: 'GET',
+        }).then(function (response) {
+            console.log(response, "A:WORKING");
+            console.log(JSON.parse(response.contents), "reference");
+            var data = JSON.parse(response.contents);
+            console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
+
+            //Activities data appended here  
+            //if checkbox isn't clicked dont present data
+            console.log(activityBox, "aojaoi hegiuasrigbr");
+            if (activityBox == true) {
+                var attraction = $("<p>").text("Your Activites Result: ")
+                var attractionName = $("<p>").text(data.candidates[0].name);
+                var attractionAddress = $("<p>").text(data.candidates[0].formatted_address);
+                var attractionRating = $("<p>").text(data.candidates[0].rating + " stars");
+                console.log("Activity Rating " + data.candidates[0].rating);
+                $("#activityResults").append(attraction, attractionName, attractionRating, attractionAddress,);
+            }
+
+        });
+
+        let bqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchValue + "%20beaches&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
+        $.ajax({
+            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(bqueryURL),
+            method: 'GET',
+        }).then(function (response) {
+            console.log(response, "B:WORKING");
             console.log(JSON.parse(response.contents), "reference");
             var data = JSON.parse(response.contents);
             console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
 
             //Beaches appended here 
-
+            //if checkbox isn't clicked dont present data
+            console.log(beachBox, "aojaoi hegiuasrigbr");
+            if (beachBox == true) {
                 var beach = $("<p>").text("Your Beach Result: ")
                 var beachName = $("<p>").text(data.candidates[0].name);
                 var beachAddress = $("<p>").text(data.candidates[0].formatted_address);
                 var beachRating = $("<p>").text(data.candidates[0].rating + " stars");
                 console.log("beach rating " + data.candidates[0].rating);
                 $("#beachResults").append(beach, beachName, beachRating, beachAddress);
+            }
 
         });
     }
