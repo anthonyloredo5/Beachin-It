@@ -156,6 +156,28 @@ $(document).ready(function () {
     }
     //google maps api
     function gMapsAPI(searchValue) {
+        let hqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchValue + "%20hotels&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
+
+        $.ajax({
+            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(hqueryURL), 
+            method: 'GET',
+        }).then(function (response) {
+            console.log(response, "H:WORKING");
+            console.log(JSON.parse(response.contents), "reference");
+            var data = JSON.parse(response.contents);
+            console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
+
+            //Hotel data appended here  
+
+                var hotel = $("<p>").text("Your Hotel Result: ")
+                var hotelName = $("<p>").text(data.candidates[0].name);
+                var hotelAddress = $("<p>").text(data.candidates[0].formatted_address);
+                var hotelRating = $("<p>").text(data.candidates[0].rating + " stars");
+                console.log("Hotel Rating " + data.candidates[0].rating);
+                $("#hotelResults").append(hotel, hotelName, hotelRating, hotelAddress,);
+
+        });
+
         let aqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input="+ searchValue + "%20attractions&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
 
         $.ajax({
@@ -173,7 +195,7 @@ $(document).ready(function () {
                 var attractionName = $("<p>").text(data.candidates[0].name);
                 var attractionAddress = $("<p>").text(data.candidates[0].formatted_address);
                 var attractionRating = $("<p>").text(data.candidates[0].rating + " stars");
-                console.log("beach rating " + data.candidates[0].rating);
+                console.log("Activity Rating " + data.candidates[0].rating);
                 $("#activityResults").append(attraction, attractionName, attractionRating, attractionAddress,);
 
         });
@@ -183,7 +205,7 @@ $(document).ready(function () {
             url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(bqueryURL), 
             method: 'GET',
         }).then(function (response) {
-            console.log(response, ":BWORKING");
+            console.log(response, "B:WORKING");
             console.log(JSON.parse(response.contents), "reference");
             var data = JSON.parse(response.contents);
             console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
