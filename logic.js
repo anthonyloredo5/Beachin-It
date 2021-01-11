@@ -17,7 +17,7 @@ $(document).ready(function () {
 
         //calls for API 
         weatherAPICall(searchValue);
-        gMapsAPI();
+        gMapsAPI(searchValue);
         tidesAPI();
 
         //checks which boxes are slected and whether to include that dat in result.
@@ -42,6 +42,13 @@ $(document).ready(function () {
             console.log(nRestaurant);
         }
     })
+
+    //Beaches data appended here
+   
+
+
+
+
 
     //working
     function weatherAPICall(searchValue) {
@@ -75,10 +82,10 @@ $(document).ready(function () {
                 var formattedTime = hours + ":" + minutes.substr(-2) + "am";
                 var formattedTime2 = hours2 + ":" + minutes.substr(-2) + "pm";
 
+                
 
 
-
-
+                //Weather appended here
                 var currentTemperature = $("<p></p>").text("Temperature: " + fKtoF + "F");
                 var humidity = $("<p></p").text("Humidity: " + response.main.humidity + "%");
                 var sun = $("<p></p>").text("Sunrise: " + formattedTime + ", " + "Sunset: " + formattedTime2);
@@ -124,8 +131,8 @@ $(document).ready(function () {
         })
     }
     //google maps api
-    function gMapsAPI() {
-        let queryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=burgers%20NewSmyrnaBeach&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
+    function gMapsAPI(searchValue) {
+        let queryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchValue + "%20beaches&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
         $.ajax({
             url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(queryURL),
             method: 'GET',
@@ -134,6 +141,10 @@ $(document).ready(function () {
             console.log(JSON.parse(response.contents), "reference");
             var data = JSON.parse(response.contents);
             console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
+
+            //Beaches appended here 
+                var beach = $("<p></p>").text ("Your Beach Result: " + data.candidates[0].name + ": " + data.candidates[0].formatted_address);
+                $("#beachResults").append(beach);
         });
     }
     //working
