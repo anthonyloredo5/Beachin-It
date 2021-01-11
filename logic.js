@@ -96,22 +96,33 @@ $(document).ready(function () {
 
 
                 //map attempt
-                initialize();
-                var myCenter = new google.maps.LatLng(response.coord.lat, response.coord.lon);
-                function initialize() {
-                    var mapProp = {
-                        center: myCenter,
-                        zoom: 12,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                var map;
+                var service;
+                var infowindow;
+                initMap();
+                function initMap() {
+                    var sydney = new google.maps.LatLng(response.coord.lat, response.coord.lon);
+
+                    infowindow = new google.maps.InfoWindow();
+
+                    map = new google.maps.Map(
+                        document.getElementById('map'), { center: sydney, zoom: 15 });
+
+                    var request = {
+                        query: 'Museum of Contemporary Art Australia',
+                        fields: ['name', 'geometry'],
                     };
 
-                    var map = new google.maps.Map(document.getElementById("map"), mapProp);
+                    service = new google.maps.places.PlacesService(map);
 
-                    var marker = new google.maps.Marker({
-                        position: myCenter,
+                    service.findPlaceFromQuery(request, function (results, status) {
+                        if (status === google.maps.places.PlacesServiceStatus.OK) {
+                            for (var i = 0; i < results.length; i++) {
+                                createMarker(results[i]);
+                            }
+                            map.setCenter(results[0].geometry.location);
+                        }
                     });
-
-                    marker.setMap(map);
                 }
 
             }
@@ -193,14 +204,14 @@ $(document).ready(function () {
                 hours -= 12;
                 formattedTime = hours + ":" + minutes.substr(-2) + "pm";
             }
-            
-                var timeD = $("<p></p>").text("Time: " + formattedTime);
-                var hDiv = $("<p></p>").text("Height: " + height2);
-                var sDiv = $("<p></p>").text("State: " + response.heights[0].state);
-                $("#tide-data").addClass("card");
 
-                $("#tide-data").append(timeD, sDiv, hDiv);
-            
+            var timeD = $("<p></p>").text("Time: " + formattedTime);
+            var hDiv = $("<p></p>").text("Height: " + height2);
+            var sDiv = $("<p></p>").text("State: " + response.heights[0].state);
+            $("#tide-data").addClass("card");
+
+            $("#tide-data").append(timeD, sDiv, hDiv);
+
 
             for (var i = 0; i < 2; i++) {
 
