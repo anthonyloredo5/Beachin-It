@@ -134,7 +134,7 @@ $(document).ready(function () {
     function gMapsAPI(searchValue) {
         let queryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchValue + "%20beaches&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
         $.ajax({
-            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(queryURL),
+            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(queryURL), 
             method: 'GET',
         }).then(function (response) {
             console.log(response, ":WORKING");
@@ -143,11 +143,13 @@ $(document).ready(function () {
             console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
 
             //Beaches appended here 
-                var beach = $("<p></p>").text("Your Beach Result: ")
-                var beachName = $("<p></p>").text(data.candidates[0].name);
-                var beachAddress = $("<p></p>").text(data.candidates[0].formatted_address);
-                var beachRating = $("<p><p>").text(data.candidates[0].rating + " stars");
-                $("#beachResults").append(beach, beachName, beachAddress, beachRating);
+                var beach = $("<p>").text("Your Beach Result: ")
+                var beachName = $("<p>").text(data.candidates[0].name);
+                var beachAddress = $("<p>").text(data.candidates[0].formatted_address);
+                var beachRating = $("<p>").text(data.candidates[0].rating + " stars");
+                console.log("beach rating " + data.candidates[0].rating);
+                $("#beachResults").append(beach, beachName, beachRating, beachAddress);
+
         });
     }
     //working
