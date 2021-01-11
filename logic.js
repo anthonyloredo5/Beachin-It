@@ -143,8 +143,11 @@ $(document).ready(function () {
             console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
 
             //Beaches appended here 
-                var beach = $("<p></p>").text ("Your Beach Result: " + data.candidates[0].name + ": " + data.candidates[0].formatted_address);
-                $("#beachResults").append(beach);
+                var beach = $("<p></p>").text("Your Beach Result: ")
+                var beachName = $("<p></p>").text(data.candidates[0].name);
+                var beachAddress = $("<p></p>").text(data.candidates[0].formatted_address);
+                var beachRating = $("<p><p>").text(data.candidates[0].rating + " stars");
+                $("#beachResults").append(beach, beachName, beachAddress, beachRating);
         });
     }
     //working
