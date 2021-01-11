@@ -12,6 +12,8 @@ $(document).ready(function () {
     //store seacrh value
     $("#sButton").on("click", function () {
         $("#current-weather").html("");
+        $("#beachResults").html("");
+
         var searchValue = $("#location").val();
         console.log(searchValue, "search Value");
 
@@ -44,7 +46,7 @@ $(document).ready(function () {
     })
 
     //Beaches data appended here
-   
+
 
 
 
@@ -82,7 +84,7 @@ $(document).ready(function () {
                 var formattedTime = hours + ":" + minutes.substr(-2) + "am";
                 var formattedTime2 = hours2 + ":" + minutes.substr(-2) + "pm";
 
-                
+
 
 
                 //Weather appended here
@@ -92,27 +94,197 @@ $(document).ready(function () {
                 var weather = $("<p></p>").text("Current Weather Forecast: " + response.weather[0].description);
                 $("#current-weather").append(currentTemperature, humidity, sun, weather);
 
+                //places attempt
+                // service = new google.maps.places.PlacesService(map);
+                // service.textSearch(request, callback);
+                // console.log(service, "service");
 
 
-                //map attempt
+
+                //nearbySearch() map attempt
+                var map;
+                var service;
+                var infowindow;
                 initialize();
-                var myCenter = new google.maps.LatLng(response.coord.lat, response.coord.lon);
+
                 function initialize() {
-                    var mapProp = {
-                        center: myCenter,
-                        zoom: 12,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                    };
+                    var pyrmont = new google.maps.LatLng(response.coord.lat, response.coord.lon);
 
-                    var map = new google.maps.Map(document.getElementById("map"), mapProp);
-
-                    var marker = new google.maps.Marker({
-                        position: myCenter,
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        center: pyrmont,
+                        zoom: 15
                     });
 
-                    marker.setMap(map);
+                    var request = {
+                        location: pyrmont,
+                        radius: '500',
+                        type: ['restaurant']
+                    };
+
+                    service = new google.maps.places.PlacesService(map);
+                    service.nearbySearch(request, callback);
+                    console.log(service, "SERVICE");
                 }
 
+                function callback(results, status) {
+                    console.log("Callback Running");
+                    if (status == google.maps.places.PlacesServiceStatus.OK) {
+                        for (var i = 0; i < results.length; i++) {
+                            createMarker(results[i]);
+                        }
+                    }
+                }
+
+
+
+                // //Places attempt(best)
+                // var map;
+                // var service;
+                // var infowindow;
+                // initialize();
+                // function initialize() {
+                //     var pyrmont = new google.maps.LatLng(response.coord.lat, response.coord.lon);
+
+                //     map = new google.maps.Map(document.getElementById('map'), {
+                //         center: pyrmont,
+                //         zoom: 15
+                //     });
+                //     //mayvbe
+                //     // let getNextPage;
+                //     // const moreButton = document.getElementById("more");
+
+                //     // moreButton.onclick = function () {
+                //     //     moreButton.disabled = true;
+
+                //     //     if (getNextPage) {
+                //     //         getNextPage();
+                //     //     }
+                //     // };
+
+                //     var request = {
+                //         location: pyrmont,
+                //         radius: '500',
+                //         query: ['beach',
+                //             'activites',
+                //             'beach']
+                //     };
+
+                //     service = new google.maps.places.PlacesService(map);
+                //     service.nearbySearch(request, callback);
+
+                //     service.nearbySearch(
+                //         { location: pyrmont, radius: 500, type: "store" },
+                //         (results, status, pagination) => {
+                //             if (status !== "OK") return;
+                //             createMarkers(results, map);
+                //             moreButton.disabled = !pagination.hasNextPage;
+
+                //             if (pagination.hasNextPage) {
+                //                 getNextPage = pagination.nextPage;
+                //             }
+                //         }
+                //     );
+
+                // }
+
+                // function callback(results, status) {
+                //     if (status == google.maps.places.PlacesServiceStatus.OK) {
+                //         for (var i = 0; i < results.length; i++) {
+                //             var place = results[i];
+                //             createMarker(results[i]);
+                //         }
+                //     }
+                // }
+                // function createMarkers(places, map) {
+                //     const bounds = new google.maps.LatLngBounds();
+                //     const placesList = document.getElementById("places");
+
+                //     for (let i = 0, place; (place = places[i]); i++) {
+                //         const image = {
+                //             url: place.icon,
+                //             size: new google.maps.Size(71, 71),
+                //             origin: new google.maps.Point(0, 0),
+                //             anchor: new google.maps.Point(17, 34),
+                //             scaledSize: new google.maps.Size(25, 25),
+                //         };
+                //         new google.maps.Marker({
+                //             map,
+                //             icon: image,
+                //             title: place.name,
+                //             position: place.geometry.location,
+                //         });
+                //         const li = document.createElement("li");
+                //         li.textContent = place.name;
+                //         placesList.appendChild(li);
+                //         bounds.extend(place.geometry.location);
+                //     }
+                //     map.fitBounds(bounds);
+                // }
+
+                //places attempt(current)
+
+                // This example requires the Places library. Include the libraries=places
+                // parameter when you first load the API. For example:
+                // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+                // function initMap() {
+                //     // Create the map.
+                //     const pyrmont = { lat: -33.866, lng: 151.196 };
+                //     const map = new google.maps.Map(document.getElementById("map"), {
+                //         center: pyrmont,
+                //         zoom: 17,
+                //     });
+                //     // Create the places service.
+                //     const service = new google.maps.places.PlacesService(map);
+                //     let getNextPage;
+                //     const moreButton = document.getElementById("more");
+
+                //     moreButton.onclick = function () {
+                //         moreButton.disabled = true;
+
+                //         if (getNextPage) {
+                //             getNextPage();
+                //         }
+                //     };
+                //     // Perform a nearby search.
+                //     service.nearbySearch(
+                //         { location: pyrmont, radius: 500, type: "store" },
+                //         (results, status, pagination) => {
+                //             if (status !== "OK") return;
+                //             createMarkers(results, map);
+                //             moreButton.disabled = !pagination.hasNextPage;
+
+                //             if (pagination.hasNextPage) {
+                //                 getNextPage = pagination.nextPage;
+                //             }
+                //         }
+                //     );
+                // }
+
+                // function createMarkers(places, map) {
+                //     const bounds = new google.maps.LatLngBounds();
+                //     const placesList = document.getElementById("places");
+
+                //     for (let i = 0, place; (place = places[i]); i++) {
+                //         const image = {
+                //             url: place.icon,
+                //             size: new google.maps.Size(71, 71),
+                //             origin: new google.maps.Point(0, 0),
+                //             anchor: new google.maps.Point(17, 34),
+                //             scaledSize: new google.maps.Size(25, 25),
+                //         };
+                //         new google.maps.Marker({
+                //             map,
+                //             icon: image,
+                //             title: place.name,
+                //             position: place.geometry.location,
+                //         });
+                //         const li = document.createElement("li");
+                //         li.textContent = place.name;
+                //         placesList.appendChild(li);
+                //         bounds.extend(place.geometry.location);
+                //     }
+                //     map.fitBounds(bounds);
+                // }
 
             }
         })
@@ -143,6 +315,7 @@ $(document).ready(function () {
             console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
 
             //Beaches appended here 
+
                 var beach = $("<p>").text("Your Beach Result: ")
                 var beachName = $("<p>").text(data.candidates[0].name);
                 var beachAddress = $("<p>").text(data.candidates[0].formatted_address);
@@ -155,14 +328,28 @@ $(document).ready(function () {
     //working
     function tidesAPI() {
         $("#tide-data").html("");
+        $("#tide-data1").html("");
+
+
         //BG api call
+        // const settings = {
+        //     "async": true,
+        //     "crossDomain": true,
+        //     "url": "https://tides.p.rapidapi.com/tides?latitude=44.414&longitude=-2.097&interval=60&duration=1440",
+        //     "method": "GET",
+        //     "headers": {
+        //         "x-rapidapi-key": "860bd8267cmsh0224dc5b15d78d9p1bf78fjsnf179cb3c0ad2",
+        //         "x-rapidapi-host": "tides.p.rapidapi.com"
+        //     }
+        // };
+        //EB api call
         const settings = {
             "async": true,
             "crossDomain": true,
             "url": "https://tides.p.rapidapi.com/tides?latitude=44.414&longitude=-2.097&interval=60&duration=1440",
             "method": "GET",
             "headers": {
-                "x-rapidapi-key": "860bd8267cmsh0224dc5b15d78d9p1bf78fjsnf179cb3c0ad2",
+                "x-rapidapi-key": "57167014f1msh8f4697a8f731a71p1513c4jsn311b1f516fe4",
                 "x-rapidapi-host": "tides.p.rapidapi.com"
             }
         };
@@ -179,20 +366,22 @@ $(document).ready(function () {
             height2 = height2.toFixed(2);
 
             let unix_timestamp = response.heights[0].timestamp;
-                var date = new Date(unix_timestamp * 1000);
-                var hours = date.getHours();
-                var minutes = "0" + date.getMinutes();
-                var formattedTime = hours + ":" + minutes.substr(-2) + "am";
-                if (hours > 12) {
-                    hours -= 12;
-                    formattedTime = hours + ":" + minutes.substr(-2) + "pm";
-                }
+            var date = new Date(unix_timestamp * 1000);
+            var hours = date.getHours();
+            var minutes = "0" + date.getMinutes();
+            var formattedTime = hours + ":" + minutes.substr(-2) + "am";
+            if (hours > 12) {
+                hours -= 12;
+                formattedTime = hours + ":" + minutes.substr(-2) + "pm";
+            }
 
             var timeD = $("<p></p>").text("Time: " + formattedTime);
             var hDiv = $("<p></p>").text("Height: " + height2);
             var sDiv = $("<p></p>").text("State: " + response.heights[0].state);
+            $("#tide-data").addClass("card");
 
             $("#tide-data").append(timeD, sDiv, hDiv);
+
 
             for (var i = 0; i < 2; i++) {
 
@@ -210,19 +399,30 @@ $(document).ready(function () {
                     formattedTime = hours + ":" + minutes.substr(-2) + "pm";
                 }
                 console.log(formattedTime);
+                var div = $("<div></div>").addClass("card card-body");
+                div.attr("id", "tideRow");
+                var nDiv = $("<div></div>").addClass("col s12 m6");
+                var nDiv2 = $("<div></div>").addClass("col s12 m6 card");
+                $("#tide-data1").addClass("row");
 
-                var timeD = $("<p></p>").text("Time: " + formattedTime);
-                var hDiv = $("<p></p>").text("Height: " + height);
+                var timeD = $("<p></p>").text("Time: " + formattedTime + "");
+                var hDiv = $("<p></p>").text("Height: " + response.extremes[i].height.toFixed(2));
                 var sDiv = $("<p></p>").text("State: " + response.extremes[i].state);
 
-                $("#tide-data" + i).append(timeD, sDiv, hDiv);
+                //timeD, sDiv, hDiv
+                nDiv.append(timeD, sDiv, hDiv);
+                nDiv2.append(timeD, sDiv, hDiv);
+                div.append(nDiv2, nDiv);
+                //$("#tide-data").append(div);
+
+                $("#tide-data1").append(nDiv2);
 
             }
 
 
 
         });
-        //Al api call
+        //Al api call 
         // const settings = {
         //     "async": true,
         //     "crossDomain": true,

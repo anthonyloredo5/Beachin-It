@@ -4,6 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjLvwdYeDXPOjPs7YzTq8ZHLEmHSTdf5s&libraries=places"></script>
   <title>Beachin' It</title>
 
   <!-- CSS  -->
@@ -93,15 +94,14 @@
     <div class="section">
       <!--   Icon Section   -->
       <div class="row">
-        <div class="col s12 m4">
+        <div id="Apples" class="col s12 m4">
           <div class="icon-block">
 
 
             <h2 class="center pink-text"><i class="material-icons small">pool</i></h2>
             <p class="light2">TIDES</p>
             <div id="tide-data"></div>
-            <div id="tide-data0"></div>
-            <div id="tide-data1"></div>
+            <div id="tide-data1" class="row"></div>
 
 
           </div>
@@ -121,108 +121,110 @@
           <div class="icon-block">
             <h2 class="center pink-text"><i class="material-icons small">map</i></h2>
             <p class="light2">MAP</p>
-            <div id="map"
+            <div id="map" </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- //potential third div (checkbox data) -->
-  <!-- This sectoin is gonna have what the user included in search -->
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">Let's Go!</h5>
-          <!-- add check box values to this -->
-          <div class="checkBoxResults"></div>
+    <!-- //potential third div (checkbox data) -->
+    <!-- This sectoin is gonna have what the user included in search -->
+    <div class="parallax-container valign-wrapper">
+      <div class="section no-pad-bot">
+        <div class="container">
+          <div class="row center">
+            <h5 class="header col s12 light">Let's Go!</h5>
+            <!-- add check box values to this -->
+            <div class="checkBoxResults"></div>
+          </div>
         </div>
       </div>
+      <div class="parallax"><img src="./assets/background.jpg" alt="Unsplashed background img 2"></div>
     </div>
-    <div class="parallax"><img src="./assets/background.jpg" alt="Unsplashed background img 2"></div>
-  </div>
 
-  <!-- Display data from api based on user selection -->
-  <div class="container">
-    <div class="section">
-      <div class="row">
+    <!-- Display data from api based on user selection -->
+    <div class="container">
+      <div class="section">
         <div class="row">
-          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <div class="row">
+            <h3><i class="mdi-content-send brown-text"></i></h3>
 
-          <!-- add sections for api data -->
-          <div class="col s12 m3">
-            <div class="icon-block">
-              <h2 class="center brown-text"><i class="material-icons">pets</i></h2>
-              <h5 class="center">Pet Friendly API Info</h5>
-              <span class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate
-                our custom components. Additionally, we refined animations and transitions to provide a smoother
-                experience for developers.</span>
+            <!-- add sections for api data -->
+            <div class="col s12 m3">
+              <div class="icon-block">
+                <h2 class="center brown-text"><i class="material-icons">pets</i></h2>
+                <h5 class="center">Pet Friendly API Info</h5>
+                <span class="light">We did most of the heavy lifting for you to provide a default stylings that
+                  incorporate
+                  our custom components. Additionally, we refined animations and transitions to provide a smoother
+                  experience for developers.</span>
+              </div>
             </div>
-          </div>
-          <div class="col s12 m3">
-            <div class="icon-block">
-              <h2 class="center brown-text"><i class="material-icons">waves</i></h2>
-              <h5 class="center">Your Match:</h5>
-            
-              <div id = "beachResults"></div>
+            <div class="col s12 m3">
+              <div class="icon-block">
+                <h2 class="center brown-text"><i class="material-icons">waves</i></h2>
+                <h5 class="center">Your Match:</h5>
+
+                <div id="beachResults"></div>
+              </div>
             </div>
-          </div>
-          <div class="col s12 m3">
-            <div class="icon-block">
-              <h2 class="center brown-text"><i class="material-icons">local_activity</i></h2>
-              <h5 class="center">Nearby Activities API Info</h5>
-              <span class="light">We have provided detailed documentation as well as specific code examples to help new
-                users get started. We are also always open to feedback and can answer any questions a user may have
-                about Materialize.</span>
-            </div>
-          </div>
-          <div class="col s12 m3">
-            <div class="icon-block">
-              <h2 class="center brown-text"><i class="material-icons">local_dining</i></h2>
-              <h5 class="center">Nearby Restaurants API Info</h5>
-              <p class="light">We have provided detailed documentation as well as specific code examples to help new
-                users get started. We are also always open to feedback and can answer any questions a user may have
-                about Materialize.</p>
+            <div class="col s12 m3">
+              <div class="icon-block">
+                <h2 class="center brown-text"><i class="material-icons">local_activity</i></h2>
+                <h5 class="center">Nearby Activities API Info</h5>
+                <span class="light">We have provided detailed documentation as well as specific code examples to help
+                  new
+                  users get started. We are also always open to feedback and can answer any questions a user may have
+                  about Materialize.</span>
+              </div>
             </div>
             <div class="col s12 m3">
               <div class="icon-block">
                 <h2 class="center brown-text"><i class="material-icons">local_dining</i></h2>
                 <h5 class="center">Nearby Restaurants API Info</h5>
-                <span class="light">We have provided detailed documentation as well as specific code examples to help new
+                <p class="light">We have provided detailed documentation as well as specific code examples to help new
                   users get started. We are also always open to feedback and can answer any questions a user may have
-                  about Materialize.</span>
+                  about Materialize.</p>
               </div>
-        </div>
-      </div>
-    </div>
+              <div class="col s12 m3">
+                <div class="icon-block">
+                  <h2 class="center brown-text"><i class="material-icons">local_dining</i></h2>
+                  <h5 class="center">Nearby Restaurants API Info</h5>
+                  <span class="light">We have provided detailed documentation as well as specific code examples to help
+                    new
+                    users get started. We are also always open to feedback and can answer any questions a user may have
+                    about Materialize.</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    <!-- footer -->
-    <footer>
-      <div class="footer-copyright">
-        <div class="container">
-          Made by <a class="blue-text text-lighten-3" href="http://materializecss.com">JEBA</a>
-        </div>
-      </div>
-    </footer>
+          <!-- footer -->
+          <footer>
+            <div class="footer-copyright">
+              <div class="container">
+                Made by <a class="blue-text text-lighten-3" href="http://materializecss.com">JEBA</a>
+              </div>
+            </div>
+          </footer>
 
 
-    <!--  Scripts-->
+          <!--  Scripts-->
 
 
 
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="js/materialize.js"></script>
-    <script src="js/init.js"></script>
+          <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+          <script src="js/materialize.js"></script>
+          <script src="js/init.js"></script>
 
-    <script src="js/materialize.js"></script>
-    <script src="js/init.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="logic.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <!-- maps attempt -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjLvwdYeDXPOjPs7YzTq8ZHLEmHSTdf5s"></script>
-    
+          <script src="js/materialize.js"></script>
+          <script src="js/init.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+          <script src="logic.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+          <!-- maps attempt -->
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjLvwdYeDXPOjPs7YzTq8ZHLEmHSTdf5s"></script>
+
 
 </html>
