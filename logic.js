@@ -13,6 +13,7 @@ $(document).ready(function () {
     $("#sButton").on("click", function () {
         $("#current-weather").html("");
         $("#beachResults").html("");
+        
         var searchValue = $("#location").val();
         console.log(searchValue, "search Value");
 
@@ -161,6 +162,9 @@ $(document).ready(function () {
     //working
     function tidesAPI() {
         $("#tide-data").html("");
+        $("#tide-data1").html("");
+        
+        
         //BG api call
         // const settings = {
         //     "async": true,
@@ -212,7 +216,7 @@ $(document).ready(function () {
 
             $("#tide-data").append(timeD, sDiv, hDiv);
 
-
+            
             for (var i = 0; i < 2; i++) {
 
 
@@ -230,11 +234,13 @@ $(document).ready(function () {
                 }
                 console.log(formattedTime);
                 var div = $("<div></div>").addClass("card card-body");
+                div.attr("id", "tideRow");
                 var nDiv = $("<div></div>").addClass("col s12 m6");
                 var nDiv2 = $("<div></div>").addClass("col s12 m6 card");
+                $("#tide-data1").addClass("row");
 
                 var timeD = $("<p></p>").text("Time: " + formattedTime + "");
-                var hDiv = $("<p></p>").text("Height: " + height);
+                var hDiv = $("<p></p>").text("Height: " + response.extremes[i].height.toFixed(2));
                 var sDiv = $("<p></p>").text("State: " + response.extremes[i].state);
 
                 //timeD, sDiv, hDiv
@@ -242,7 +248,8 @@ $(document).ready(function () {
                 nDiv2.append(timeD, sDiv, hDiv);
                 div.append(nDiv2, nDiv);
                 //$("#tide-data").append(div);
-                $("#Apples").append(div);
+                
+                $("#tide-data1").append(nDiv2);
 
             }
 
