@@ -137,154 +137,6 @@ $(document).ready(function () {
 
 
 
-                // //Places attempt(best)
-                // var map;
-                // var service;
-                // var infowindow;
-                // initialize();
-                // function initialize() {
-                //     var pyrmont = new google.maps.LatLng(response.coord.lat, response.coord.lon);
-
-                //     map = new google.maps.Map(document.getElementById('map'), {
-                //         center: pyrmont,
-                //         zoom: 15
-                //     });
-                //     //mayvbe
-                //     // let getNextPage;
-                //     // const moreButton = document.getElementById("more");
-
-                //     // moreButton.onclick = function () {
-                //     //     moreButton.disabled = true;
-
-                //     //     if (getNextPage) {
-                //     //         getNextPage();
-                //     //     }
-                //     // };
-
-                //     var request = {
-                //         location: pyrmont,
-                //         radius: '500',
-                //         query: ['beach',
-                //             'activites',
-                //             'beach']
-                //     };
-
-                //     service = new google.maps.places.PlacesService(map);
-                //     service.nearbySearch(request, callback);
-
-                //     service.nearbySearch(
-                //         { location: pyrmont, radius: 500, type: "store" },
-                //         (results, status, pagination) => {
-                //             if (status !== "OK") return;
-                //             createMarkers(results, map);
-                //             moreButton.disabled = !pagination.hasNextPage;
-
-                //             if (pagination.hasNextPage) {
-                //                 getNextPage = pagination.nextPage;
-                //             }
-                //         }
-                //     );
-
-                // }
-
-                // function callback(results, status) {
-                //     if (status == google.maps.places.PlacesServiceStatus.OK) {
-                //         for (var i = 0; i < results.length; i++) {
-                //             var place = results[i];
-                //             createMarker(results[i]);
-                //         }
-                //     }
-                // }
-                // function createMarkers(places, map) {
-                //     const bounds = new google.maps.LatLngBounds();
-                //     const placesList = document.getElementById("places");
-
-                //     for (let i = 0, place; (place = places[i]); i++) {
-                //         const image = {
-                //             url: place.icon,
-                //             size: new google.maps.Size(71, 71),
-                //             origin: new google.maps.Point(0, 0),
-                //             anchor: new google.maps.Point(17, 34),
-                //             scaledSize: new google.maps.Size(25, 25),
-                //         };
-                //         new google.maps.Marker({
-                //             map,
-                //             icon: image,
-                //             title: place.name,
-                //             position: place.geometry.location,
-                //         });
-                //         const li = document.createElement("li");
-                //         li.textContent = place.name;
-                //         placesList.appendChild(li);
-                //         bounds.extend(place.geometry.location);
-                //     }
-                //     map.fitBounds(bounds);
-                // }
-
-                //places attempt(current)
-
-                // This example requires the Places library. Include the libraries=places
-                // parameter when you first load the API. For example:
-                // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-                // function initMap() {
-                //     // Create the map.
-                //     const pyrmont = { lat: -33.866, lng: 151.196 };
-                //     const map = new google.maps.Map(document.getElementById("map"), {
-                //         center: pyrmont,
-                //         zoom: 17,
-                //     });
-                //     // Create the places service.
-                //     const service = new google.maps.places.PlacesService(map);
-                //     let getNextPage;
-                //     const moreButton = document.getElementById("more");
-
-                //     moreButton.onclick = function () {
-                //         moreButton.disabled = true;
-
-                //         if (getNextPage) {
-                //             getNextPage();
-                //         }
-                //     };
-                //     // Perform a nearby search.
-                //     service.nearbySearch(
-                //         { location: pyrmont, radius: 500, type: "store" },
-                //         (results, status, pagination) => {
-                //             if (status !== "OK") return;
-                //             createMarkers(results, map);
-                //             moreButton.disabled = !pagination.hasNextPage;
-
-                //             if (pagination.hasNextPage) {
-                //                 getNextPage = pagination.nextPage;
-                //             }
-                //         }
-                //     );
-                // }
-
-                // function createMarkers(places, map) {
-                //     const bounds = new google.maps.LatLngBounds();
-                //     const placesList = document.getElementById("places");
-
-                //     for (let i = 0, place; (place = places[i]); i++) {
-                //         const image = {
-                //             url: place.icon,
-                //             size: new google.maps.Size(71, 71),
-                //             origin: new google.maps.Point(0, 0),
-                //             anchor: new google.maps.Point(17, 34),
-                //             scaledSize: new google.maps.Size(25, 25),
-                //         };
-                //         new google.maps.Marker({
-                //             map,
-                //             icon: image,
-                //             title: place.name,
-                //             position: place.geometry.location,
-                //         });
-                //         const li = document.createElement("li");
-                //         li.textContent = place.name;
-                //         placesList.appendChild(li);
-                //         bounds.extend(place.geometry.location);
-                //     }
-                //     map.fitBounds(bounds);
-                // }
 
             }
         })
@@ -304,12 +156,34 @@ $(document).ready(function () {
     }
     //google maps api
     function gMapsAPI(searchValue) {
-        let queryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchValue + "%20beaches&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
+        let aqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input="+ searchValue + "%20attractions&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
+
         $.ajax({
-            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(queryURL), 
+            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(aqueryURL), 
             method: 'GET',
         }).then(function (response) {
-            console.log(response, ":WORKING");
+            console.log(response, "A:WORKING");
+            console.log(JSON.parse(response.contents), "reference");
+            var data = JSON.parse(response.contents);
+            console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
+
+            //Activities data appended here  
+
+                var attraction = $("<p>").text("Your Activites Result: ")
+                var attractionName = $("<p>").text(data.candidates[0].name);
+                var attractionAddress = $("<p>").text(data.candidates[0].formatted_address);
+                var attractionRating = $("<p>").text(data.candidates[0].rating + " stars");
+                console.log("beach rating " + data.candidates[0].rating);
+                $("#activityResults").append(attraction, attractionName, attractionRating, attractionAddress,);
+
+        });
+
+        let bqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchValue + "%20beaches&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
+        $.ajax({
+            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(bqueryURL), 
+            method: 'GET',
+        }).then(function (response) {
+            console.log(response, ":BWORKING");
             console.log(JSON.parse(response.contents), "reference");
             var data = JSON.parse(response.contents);
             console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
