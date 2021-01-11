@@ -1,10 +1,12 @@
 $(document).ready(function () {
     //make a static img tag
     //selector.attr("src", )
-    var pFriendly = false;
-    var hRated = false;
-    var nActivities = false;
-    var nRestaurant = false;
+    var hotelBox = false;
+    var beachBox = false;
+    var activityBox = false;
+    var restaurantBox = false;
+
+
 
 
 
@@ -20,32 +22,34 @@ $(document).ready(function () {
         var searchValue = $("#location").val();
         console.log(searchValue, "search Value");
 
+        //checks which boxes are slected and whether to include that dat in result.
+        if ($(".box1").is(
+            ":checked")) {
+            hotelBox = true;
+            console.log(hotelBox);
+        }
+        if ($(".box2").is(
+            ":checked")) {
+            beachBox = true;
+            console.log(beachBox);
+        }
+        if ($(".box3").is(
+            ":checked")) {
+            activityBox = true;
+            console.log(activityBox);
+        }
+        if ($(".box4").is(
+            ":checked")) {
+            restaurantBox = true;
+            console.log(restaurantBox);
+        }
+
         //calls for API 
         weatherAPICall(searchValue);
         gMapsAPI(searchValue);
         tidesAPI();
 
-        //checks which boxes are slected and whether to include that dat in result.
-        if ($(".box1").is(
-            ":checked")) {
-            pFriendly = true;
-            console.log(pFriendly);
-        }
-        if ($(".box2").is(
-            ":checked")) {
-            hRated = true;
-            console.log(hRated);
-        }
-        if ($(".box3").is(
-            ":checked")) {
-            nActivities = true;
-            console.log(nActivities);
-        }
-        if ($(".box4").is(
-            ":checked")) {
-            nRestaurant = true;
-            console.log(nRestaurant);
-        }
+
     })
 
     //Beaches data appended here
@@ -133,7 +137,7 @@ $(document).ready(function () {
                     console.log("Callback Running");
                     if (status == google.maps.places.PlacesServiceStatus.OK) {
                         for (var i = 0; i < results.length; i++) {
-                            createMarker(results[i]);
+                            createMarkers(results[i]);
                         }
                     }
                 }
@@ -159,10 +163,10 @@ $(document).ready(function () {
     }
     //google maps api
     function gMapsAPI(searchValue) {
-        let rqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input="+ searchValue + "%20restaurants&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
+        let rqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchValue + "%20restaurants&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
 
         $.ajax({
-            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(rqueryURL), 
+            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(rqueryURL),
             method: 'GET',
         }).then(function (response) {
             console.log(response, "R:WORKING");
@@ -171,13 +175,16 @@ $(document).ready(function () {
             console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
 
             //restaurant data appended here  
-
+            //if checkbox isn't clicked dont present data
+            console.log(restaurantBox, "aojaoi hegiuasrigbr");
+            if (restaurantBox == true) {
                 var restaurant = $("<p>").text("Your Restaurant Result: ")
                 var restaurantName = $("<p>").text(data.candidates[0].name);
                 var restaurantAddress = $("<p>").text(data.candidates[0].formatted_address);
                 var restaurantRating = $("<p>").text(data.candidates[0].rating + " stars");
                 console.log("Restaurant Rating " + data.candidates[0].rating);
                 $("#restaurantResults").append(restaurant, restaurantName, restaurantRating, restaurantAddress,);
+            }
 
         });
 
@@ -185,7 +192,7 @@ $(document).ready(function () {
         let hqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchValue + "%20hotels&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
 
         $.ajax({
-            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(hqueryURL), 
+            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(hqueryURL),
             method: 'GET',
         }).then(function (response) {
             console.log(response, "H:WORKING");
@@ -194,20 +201,23 @@ $(document).ready(function () {
             console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
 
             //Hotel data appended here  
-
+            //if checkbox isn't clicked dont present data
+            console.log(hotelBox, "aojaoi hegiuasrigbr");
+            if (hotelBox == true) {
                 var hotel = $("<p>").text("Your Hotel Result: ")
                 var hotelName = $("<p>").text(data.candidates[0].name);
                 var hotelAddress = $("<p>").text(data.candidates[0].formatted_address);
                 var hotelRating = $("<p>").text(data.candidates[0].rating + " stars");
                 console.log("Hotel Rating " + data.candidates[0].rating);
                 $("#hotelResults").append(hotel, hotelName, hotelRating, hotelAddress,);
+            }
 
         });
 
-        let aqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input="+ searchValue + "%20attractions&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
+        let aqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchValue + "%20attractions&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
 
         $.ajax({
-            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(aqueryURL), 
+            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(aqueryURL),
             method: 'GET',
         }).then(function (response) {
             console.log(response, "A:WORKING");
@@ -216,19 +226,22 @@ $(document).ready(function () {
             console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
 
             //Activities data appended here  
-
+            //if checkbox isn't clicked dont present data
+            console.log(activityBox, "aojaoi hegiuasrigbr");
+            if (activityBox == true) {
                 var attraction = $("<p>").text("Your Activites Result: ")
                 var attractionName = $("<p>").text(data.candidates[0].name);
                 var attractionAddress = $("<p>").text(data.candidates[0].formatted_address);
                 var attractionRating = $("<p>").text(data.candidates[0].rating + " stars");
                 console.log("Activity Rating " + data.candidates[0].rating);
                 $("#activityResults").append(attraction, attractionName, attractionRating, attractionAddress,);
+            }
 
         });
 
         let bqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchValue + "%20beaches&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
         $.ajax({
-            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(bqueryURL), 
+            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(bqueryURL),
             method: 'GET',
         }).then(function (response) {
             console.log(response, "B:WORKING");
@@ -237,13 +250,16 @@ $(document).ready(function () {
             console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
 
             //Beaches appended here 
-
+            //if checkbox isn't clicked dont present data
+            console.log(beachBox, "aojaoi hegiuasrigbr");
+            if (beachBox == true) {
                 var beach = $("<p>").text("Your Beach Result: ")
                 var beachName = $("<p>").text(data.candidates[0].name);
                 var beachAddress = $("<p>").text(data.candidates[0].formatted_address);
                 var beachRating = $("<p>").text(data.candidates[0].rating + " stars");
                 console.log("beach rating " + data.candidates[0].rating);
                 $("#beachResults").append(beach, beachName, beachRating, beachAddress);
+            }
 
         });
     }
