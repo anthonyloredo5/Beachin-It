@@ -156,6 +156,29 @@ $(document).ready(function () {
     }
     //google maps api
     function gMapsAPI(searchValue) {
+        let rqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input="+ searchValue + "%20restaurants&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
+
+        $.ajax({
+            url: 'https://api.allorigins.win/get?url=' + encodeURIComponent(rqueryURL), 
+            method: 'GET',
+        }).then(function (response) {
+            console.log(response, "R:WORKING");
+            console.log(JSON.parse(response.contents), "reference");
+            var data = JSON.parse(response.contents);
+            console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
+
+            //restaurant data appended here  
+
+                var restaurant = $("<p>").text("Your Restaurant Result: ")
+                var restaurantName = $("<p>").text(data.candidates[0].name);
+                var restaurantAddress = $("<p>").text(data.candidates[0].formatted_address);
+                var restaurantRating = $("<p>").text(data.candidates[0].rating + " stars");
+                console.log("Restaurant Rating " + data.candidates[0].rating);
+                $("#restaurantResults").append(restaurant, restaurantName, restaurantRating, restaurantAddress,);
+
+        });
+
+
         let hqueryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchValue + "%20hotels&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyBpsko6mY2gC8yhiv3pQsX0X2axGTXKrE0"
 
         $.ajax({
