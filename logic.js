@@ -45,7 +45,7 @@ $(document).ready(function () {
     })
 
     //Beaches data appended here
-   
+
 
 
 
@@ -83,7 +83,7 @@ $(document).ready(function () {
                 var formattedTime = hours + ":" + minutes.substr(-2) + "am";
                 var formattedTime2 = hours2 + ":" + minutes.substr(-2) + "pm";
 
-                
+
 
 
                 //Weather appended here
@@ -114,7 +114,6 @@ $(document).ready(function () {
                     marker.setMap(map);
                 }
 
-
             }
         })
     }
@@ -144,21 +143,32 @@ $(document).ready(function () {
             console.log(data.candidates[0].photos[0].html_attributions[0], "trying to find map data");
 
             //Beaches appended here 
-                var beach = $("<p></p>").text ("Your Beach Result: " + data.candidates[0].name + ": " + data.candidates[0].formatted_address);
-                $("#beachResults").append(beach);
+            var beach = $("<p></p>").text("Your Beach Result: " + data.candidates[0].name + "\n" + ": " + data.candidates[0].formatted_address);
+            $("#beachResults").append(beach);
         });
     }
     //working
     function tidesAPI() {
         $("#tide-data").html("");
         //BG api call
+        // const settings = {
+        //     "async": true,
+        //     "crossDomain": true,
+        //     "url": "https://tides.p.rapidapi.com/tides?latitude=44.414&longitude=-2.097&interval=60&duration=1440",
+        //     "method": "GET",
+        //     "headers": {
+        //         "x-rapidapi-key": "860bd8267cmsh0224dc5b15d78d9p1bf78fjsnf179cb3c0ad2",
+        //         "x-rapidapi-host": "tides.p.rapidapi.com"
+        //     }
+        // };
+        //EB api call
         const settings = {
             "async": true,
             "crossDomain": true,
             "url": "https://tides.p.rapidapi.com/tides?latitude=44.414&longitude=-2.097&interval=60&duration=1440",
             "method": "GET",
             "headers": {
-                "x-rapidapi-key": "860bd8267cmsh0224dc5b15d78d9p1bf78fjsnf179cb3c0ad2",
+                "x-rapidapi-key": "57167014f1msh8f4697a8f731a71p1513c4jsn311b1f516fe4",
                 "x-rapidapi-host": "tides.p.rapidapi.com"
             }
         };
@@ -175,20 +185,22 @@ $(document).ready(function () {
             height2 = height2.toFixed(2);
 
             let unix_timestamp = response.heights[0].timestamp;
-                var date = new Date(unix_timestamp * 1000);
-                var hours = date.getHours();
-                var minutes = "0" + date.getMinutes();
-                var formattedTime = hours + ":" + minutes.substr(-2) + "am";
-                if (hours > 12) {
-                    hours -= 12;
-                    formattedTime = hours + ":" + minutes.substr(-2) + "pm";
-                }
+            var date = new Date(unix_timestamp * 1000);
+            var hours = date.getHours();
+            var minutes = "0" + date.getMinutes();
+            var formattedTime = hours + ":" + minutes.substr(-2) + "am";
+            if (hours > 12) {
+                hours -= 12;
+                formattedTime = hours + ":" + minutes.substr(-2) + "pm";
+            }
+            
+                var timeD = $("<p></p>").text("Time: " + formattedTime);
+                var hDiv = $("<p></p>").text("Height: " + height2);
+                var sDiv = $("<p></p>").text("State: " + response.heights[0].state);
+                $("#tide-data").addClass("card");
 
-            var timeD = $("<p></p>").text("Time: " + formattedTime);
-            var hDiv = $("<p></p>").text("Height: " + height2);
-            var sDiv = $("<p></p>").text("State: " + response.heights[0].state);
-
-            $("#tide-data").append(timeD, sDiv, hDiv);
+                $("#tide-data").append(timeD, sDiv, hDiv);
+            
 
             for (var i = 0; i < 2; i++) {
 
@@ -206,19 +218,27 @@ $(document).ready(function () {
                     formattedTime = hours + ":" + minutes.substr(-2) + "pm";
                 }
                 console.log(formattedTime);
+                var div = $("<div></div>").addClass("card card-body");
+                var nDiv = $("<div></div>").addClass("col s12 m6");
+                var nDiv2 = $("<div></div>").addClass("col s12 m6 card");
 
-                var timeD = $("<p></p>").text("Time: " + formattedTime);
+                var timeD = $("<p></p>").text("Time: " + formattedTime + "");
                 var hDiv = $("<p></p>").text("Height: " + height);
                 var sDiv = $("<p></p>").text("State: " + response.extremes[i].state);
 
-                $("#tide-data" + i).append(timeD, sDiv, hDiv);
+                //timeD, sDiv, hDiv
+                nDiv.append(timeD, sDiv, hDiv);
+                nDiv2.append(timeD, sDiv, hDiv);
+                div.append(nDiv2, nDiv);
+                //$("#tide-data").append(div);
+                $("#Apples").append(div);
 
             }
 
 
 
         });
-        //Al api call
+        //Al api call 
         // const settings = {
         //     "async": true,
         //     "crossDomain": true,
