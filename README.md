@@ -11,7 +11,7 @@ This application is designed to simplify finding a relaxing beach anywhere in fl
 
 # API's
 
--rapidApi tide (Tide Info)
+- rapidApi tide (Tide Info)
 https://tides.p.rapidapi.com/tides?latitude=44.414&longitude=-2.097&interval=60&duration=1440
 
 - Open Weather API (location/forecast)
