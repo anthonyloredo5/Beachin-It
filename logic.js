@@ -287,7 +287,7 @@ $(document).ready(function () {
             "url": "https://tides.p.rapidapi.com/tides?latitude=44.414&longitude=-2.097&interval=60&duration=1440",
             "method": "GET",
             "headers": {
-                "x-rapidapi-key": "57167014f1msh8f4697a8f731a71p1513c4jsn311b1f516fe4",
+                "x-rapidapi-key":  "7b368a6d1bmsh75a3b7a56de7638p1f0edbjsnb6c57348d37c",
                 "x-rapidapi-host": "tides.p.rapidapi.com"
             }
         };
