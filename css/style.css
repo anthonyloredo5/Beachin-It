@@ -4,6 +4,8 @@ nav .brand-logo {
 }
 #logoContainer{
   text-shadow: 1px 1px 1px rgb(136, 124, 124);
+  font-size: 300%;
+  font-style: italic;
 }
 
 .material-icons{
@@ -13,10 +15,12 @@ nav .brand-logo {
 #beach {
   text-shadow: 1px 1px 1px rgb(77, 72, 72);
 }
-
+h5{
+  color: rgb(71, 71, 78);
+}
 
 #sButton{
-  background-color: rgb(146, 226, 228);
+  background-color: #BBDEFB;
 }
 
 #location {
@@ -37,6 +41,13 @@ p {
 }
 
 
+.checks{
+  text-align: left;
+  font-weight: normal;
+  text-shadow: 2px 1px 1px rgb(202, 133, 202);
+  text-underline-position: below;
+}
+
 .light2{
   color: rgb(85, 85, 88);
   font-size: large;
@@ -45,7 +56,10 @@ p {
   text-shadow: 1px 1px 1px rgb(139, 134, 134);
 }
 
-
+.center{
+  font-weight: bold;
+  color: #444;
+}
 
 .sidenav-trigger {
   color: #26a69a;
