@@ -11,7 +11,7 @@ This application is designed to simplify finding a relaxing beach anywhere in fl
 
 # API's
 
--rapidApi tide (Tide Info)
+- rapidApi tide (Tide Info)
 https://tides.p.rapidapi.com/tides?latitude=44.414&longitude=-2.097&interval=60&duration=1440
 
 - Open Weather API (location/forecast)
@@ -23,8 +23,14 @@ https://tides.p.rapidapi.com/tides?latitude=44.414&longitude=-2.097&interval=60&
 # Future Scope
     - Plan to increase functionality, perhaps adding weather the beach is dog friendly and increasing search parameters based on preferences and activities available. In addition, we'd like to add more animations and clean up ui.
 
--SCREENSHOTS-
+
+# SCREENSHOTS
 
 ![Alt text](./assets/screenshot1.png "planner page")
 ![Alt text](./assets/screenshot2.png "planner page")
 ![Alt text](./assets/screenshot3.png "planner page")
+
+# Deployed Site
+
+https://anthonyloredo5.github.io/Beachin-It/index.html
+
