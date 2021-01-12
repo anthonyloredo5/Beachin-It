@@ -87,3 +87,10 @@ background-color:white
 #tide-data2{
   text-align: right;
 }
+
+.iris {
+  background-image: url(../assets/widebackground.jpg);
+  background-repeat: no-repeat;
+  height: 50vh;
+  background-size: cover;
+}
